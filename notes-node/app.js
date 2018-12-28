@@ -1,17 +1,30 @@
 console.log('Starting App');
 // fs module
 const fs = require('fs');
-const os = require('os');
-const {addNote, add} = require('./notes');
+const _ = require('lodash');
+const yargs = require('yargs');
 
 
-console.log(`Results: ${add(3, 5)}`)
+const {addNote, getAll, getNote, removeNote} = require('./notes');
 
-//
-// var user = os.userInfo();
-//
-// fs.appendFile('greetings.txt', `Hello ${user.username}! You are ${age}`, (err) => {
-//   if (err) {
-//     console.log('Unable to write to file.');
-//   };
-// });
+const argv = yargs.argv
+var command = argv._[0]
+console.log(`Process: ${command}`);
+console.log('Yargs', argv);
+
+switch (command) {
+  case 'add':
+    addNote(argv.title, argv.body);
+    break;
+  case 'list':
+    getAll();
+    break;
+  case 'read':
+    getNote(argv.title);
+    break;
+  case 'remove':
+    removeNote(argv.title)
+    break;
+  default:
+    console.log(`Command not recognized.`);
+}
