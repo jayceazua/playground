@@ -9,12 +9,20 @@ const {addNote, getAll, getNote, removeNote} = require('./notes');
 
 const argv = yargs.argv
 var command = argv._[0]
-console.log(`Process: ${command}`);
-console.log('Yargs', argv);
+// console.log(`Process: ${command}`);
+// console.log('Yargs', argv);
 
 switch (command) {
   case 'add':
-    addNote(argv.title, argv.body);
+    let note = addNote(argv.title, argv.body);
+    if (note) {
+      console.log('Note created.');
+      console.log('--');
+      console.log(`Title: ${note.title}`)
+      console.log(`Body: ${note.body}`)
+    } else {
+      console.log('Note title taken.')
+    }
     break;
   case 'list':
     getAll();
