@@ -4,11 +4,10 @@ const fs = require('fs');
 const _ = require('lodash');
 const yargs = require('yargs');
 
-
 const {addNote, getAll, getNote, removeNote} = require('./notes');
 
 const argv = yargs.argv
-var command = argv._[0]
+const command = argv._[0]
 
 switch (command) {
   case 'add':
@@ -23,7 +22,7 @@ switch (command) {
     break;
   case 'remove':
     let noteRemoved = removeNote(argv.title);
-    noteRemoved ? console.log('Note was removed') : console.log('Note not found');
+    noteRemoved ? console.log('Note was removed.') : console.log('Note not found.');
     break;
   default:
     console.log(`Command not recognized.`);

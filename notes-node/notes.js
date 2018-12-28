@@ -9,11 +9,11 @@ let fetchNotes = () => {
   } catch (err) {
     return [];
   };
-}
+};
 
 let saveNotes = (notes) => {
   fs.writeFileSync('notes-data.json', JSON.stringify(notes));
-}
+};
 
 const addNote = (title, body) => {
   let notes = fetchNotes();
@@ -26,9 +26,8 @@ const addNote = (title, body) => {
   if (duplicateNotes.length === 0) {
     notes.push(note);
     saveNotes(notes);
-    return note
+    return note;
   };
-
 };
 
 const getAll = () => {
